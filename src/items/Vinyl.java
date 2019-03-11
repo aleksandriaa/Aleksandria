@@ -1,3 +1,5 @@
+package items;
+
 public class Vinyl {
     private String title;
     private String artist;
