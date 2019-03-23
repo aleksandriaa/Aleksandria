@@ -1,19 +1,83 @@
 package items;
 
-public interface Item {
-    String title;
-    String author;
-    boolean isAvaible;
-    int indexNumber;
+import counter.Counter;
 
-    String getTitle();
-    String getAuthor();
-    boolean getIsAvaible();
-    int getIndexNumber();
+import java.time.LocalDateTime;
 
-    void setTitle(String title);
-    void setAuthor(String author);
-    void setIsAvaible();
-    void setIndexNumber();
+public abstract class Item {
+    public long id;
 
+    public String title;
+    public String author;
+    public boolean isAvaible = true;
+    public int loanPeriod = 15;
+
+    public LocalDateTime maxReturnedDate;
+    public LocalDateTime loanDate;
+    public LocalDateTime returnedDate;
+
+
+    public long setId(){
+
+        return this.id = Counter.get();
+    }
+
+    public long getId() {
+
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getLoanPeriod() {
+        return loanPeriod;
+    }
+
+    public LocalDateTime getMaxReturnedDate() {
+        return maxReturnedDate;
+    }
+
+    public LocalDateTime getLoanDate() {
+        return loanDate;
+    }
+
+    public LocalDateTime getReturnedDate() {
+        return returnedDate;
+    }
+
+    public void isAvaible() {
+        if (this.isAvaible == true) {
+            System.out.println("Is avaible :) ");
+        } else {
+            System.out.println("Is borrowed, to be returned in " + maxReturnedDate);
+        }
+
+    }
+
+    public void toBorrow() {
+        if(isAvaible = true) {
+            this.loanDate = LocalDateTime.now();
+            this.maxReturnedDate = this.loanDate.plusDays(this.loanPeriod);
+            this.isAvaible = false;
+            System.out.println("You have borrow an item \"" + getTitle() + "\"");
+        } else {
+            System.out.println("Sorry, this item is not avaible, to be returned in " + maxReturnedDate);
+        }
+    }
+
+    public void toReturned() {
+        if (isAvaible = false) {
+            this.returnedDate = LocalDateTime.now();
+            this.isAvaible = true;
+        } else {
+            System.out.println("This item is avaible, you can not give it back");
+        }
+
+    }
 }
