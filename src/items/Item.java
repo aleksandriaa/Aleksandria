@@ -9,7 +9,7 @@ public abstract class Item {
 
     public String title;
     public String author;
-    public boolean isAvaible = true;
+    public boolean isAvaiable = true;
     public int loanPeriod = 15;
 
     public LocalDateTime maxReturnedDate;
@@ -52,7 +52,7 @@ public abstract class Item {
     }
 
     public void isAvaible() {
-        if (this.isAvaible == true) {
+        if (this.isAvaiable == true) {
             System.out.println("Is avaible :) ");
         } else {
             System.out.println("Is borrowed, to be returned in " + maxReturnedDate);
@@ -61,10 +61,10 @@ public abstract class Item {
     }
 
     public void toBorrow() {
-        if(isAvaible = true) {
+        if(isAvaiable == true) {
             this.loanDate = LocalDateTime.now();
             this.maxReturnedDate = this.loanDate.plusDays(this.loanPeriod);
-            this.isAvaible = false;
+            this.isAvaiable = false;
             System.out.println("You have borrow an item \"" + getTitle() + "\"");
         } else {
             System.out.println("Sorry, this item is not avaible, to be returned in " + maxReturnedDate);
@@ -72,9 +72,9 @@ public abstract class Item {
     }
 
     public void toReturned() {
-        if (isAvaible = false) {
+        if (isAvaiable == false) {
             this.returnedDate = LocalDateTime.now();
-            this.isAvaible = true;
+            this.isAvaiable = true;
         } else {
             System.out.println("This item is avaible, you can not give it back");
         }
